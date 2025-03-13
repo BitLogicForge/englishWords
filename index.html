@@ -5,6 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/englishWords/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Words Learning App</title>
+    <script>
+      (function () {
+        const redirect = sessionStorage.getItem("redirect");
+        if (redirect && redirect !== window.location.pathname.substring(1)) {
+          const basePath = window.location.pathname.split("/")[1];
+          const newPath = "/" + basePath + "/" + redirect;
+          sessionStorage.removeItem("redirect");
+          window.history.replaceState(null, null, newPath);
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/englishWords/assets/index-DDRPh75U.js"></script>
     <link rel="modulepreload" crossorigin href="/englishWords/assets/vendor-COVxZ1DC.js">
     <link rel="modulepreload" crossorigin href="/englishWords/assets/ui-BhnicXIS.js">
