@@ -8,6 +8,7 @@ import {
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
+import BreadcrumbSchema from "./components/BreadcrumbSchema";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Menu from "./components/Menu";
@@ -27,6 +28,7 @@ function App() {
   return (
     <>
       <BrowserRouter basename="/englishWords">
+        <BreadcrumbSchema />
         <ThemeProvider theme={theme}>
           <CssBaseline />
 

@@ -1,0 +1,19 @@
+{
+  "name": "English Words - Vocabulary Trainer",
+  "short_name": "EnglishWords",
+  "description": "Interactive English vocabulary learning for Polish speakers",
+  "start_url": "/englishWords/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1976d2",
+  "icons": [
+    {
+      "src": "/englishWords/vite.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "categories": ["education", "productivity"],
+  "lang": "en",
+  "orientation": "portrait-primary"
+}

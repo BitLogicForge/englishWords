@@ -7,6 +7,7 @@ import CurrentWord from "../components/CurrentWord.tsx";
 import InputAnswer from "../components/InputAnswer.tsx";
 import LettersHint from "../components/LettersHint.tsx";
 import OptionsWords from "../components/OptionsWords";
+import SEO from "../components/SEO";
 import Settings from "../components/Settings.tsx";
 import Word from "../components/Word.tsx";
 import WordsStats from "../components/WordsStats.tsx";
@@ -28,6 +29,12 @@ const ExercisePage = () => {
 
   return (
     <>
+      <SEO
+        title="English Vocabulary Exercise - Interactive Learning | English Words Trainer"
+        description="Practice English vocabulary with interactive exercises. Type answers or choose from multiple options. Features smart hints, letter banks, and real-time progress tracking for effective learning."
+        keywords="English vocabulary exercise, interactive learning, vocabulary practice, English words exercise, language learning game, vocabulary trainer, English for Polish speakers"
+        canonicalUrl="https://bitlogicforge.github.io/englishWords/exercise"
+      />
       <Grid container spacing={2}>
         <Grid size={{ xs: 12 }}>
           <Box
