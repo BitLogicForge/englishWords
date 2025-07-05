@@ -15,7 +15,7 @@ const Menu = () => {
   useEffect(() => {
     const path = location.pathname.substring(1) || menuItems[0].value;
     dispatch(setPage(path));
-  }, [location]);
+  }, [location, dispatch]);
 
   const handleChange = (_: React.SyntheticEvent, newValue: string) => {
     dispatch(setPage(newValue));

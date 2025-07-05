@@ -14,21 +14,18 @@ export const checkAnswer = (
   correctAnswer: string,
   dispatch: AppDispatch
 ): boolean => {
-  console.log("checkAnswer");
-  if (myAnswer === "") {
+  if (myAnswer.trim() === "") {
     return false;
   }
-  const isCorrect = myAnswer === correctAnswer;
+
+  const isCorrect = myAnswer.trim() === correctAnswer.trim();
 
   if (isCorrect) {
-    console.log("good");
     dispatch(addGoodWord(correctAnswer));
-    dispatch(setReset());
   } else {
-    console.log("bad");
     dispatch(addBadWord(correctAnswer));
-    dispatch(setReset());
   }
 
+  dispatch(setReset());
   return isCorrect;
 };

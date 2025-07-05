@@ -19,8 +19,6 @@ export default function InputAnswer() {
   }, []);
 
   const handlecheckAnswer = () => {
-    console.log("checkAnswer");
-
     checkAnswer(myAnswer, answer, dispatch);
 
     // Re-focus the input after answer is submitted

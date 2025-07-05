@@ -2,7 +2,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Box, IconButton, Paper } from "@mui/material";
 import Grid from "@mui/material/Grid";
-import { useEffect } from "react";
 import CheckButton from "../components/CheckButton.tsx";
 import CurrentWord from "../components/CurrentWord.tsx";
 import InputAnswer from "../components/InputAnswer.tsx";
@@ -11,57 +10,22 @@ import OptionsWords from "../components/OptionsWords";
 import Settings from "../components/Settings.tsx";
 import Word from "../components/Word.tsx";
 import WordsStats from "../components/WordsStats.tsx";
-import words from "../data/wordsall.json";
-import { toggleSettings } from "../store/appSlice.ts";
-import { useAppDispatch, useAppSelector } from "../store/hooks";
 import {
-  addGoodWord,
-  setAnswer,
-  setCurrentWord,
-  setReset,
-} from "../store/lessonSlice";
-import { getRandomLineFromColumn } from "../utils/listFunctions.ts";
+  useAutoAnswerCheck,
+  useExerciseSettings,
+  useWordSelection,
+} from "../hooks";
+import { toggleSettings } from "../store/appSlice.ts";
+import { useAppDispatch } from "../store/hooks";
 const ExercisePage = () => {
   const dispatch = useAppDispatch();
-  const currentWord = useAppSelector((state) => state.lesson.currentWord);
-  const answer = useAppSelector((state) => state.lesson.answer);
-  const myAnswer = useAppSelector((state) => state.lesson.myAnswer);
-  const allWords = useAppSelector((state) => state.lesson.allWords);
-  const mode = useAppSelector((state) => state.lesson.mode);
-  const showSettings = useAppSelector((state) => state.app.showSettings);
-  const showWordHint = useAppSelector((state) => state.lesson.showWordHint);
-  const showLettersHint = useAppSelector(
-    (state) => state.lesson.showLettersHint
-  );
-  useEffect(() => {
-    if (!currentWord) {
-      // Get a word that hasn't been used yet
-      let newWord;
-      let attempts = 0;
-      const maxAttempts = words.length; // Prevent infinite loop
 
-      do {
-        newWord = getRandomLineFromColumn(words);
-        attempts++;
-      } while (
-        newWord &&
-        allWords.includes(newWord.polish) &&
-        attempts < maxAttempts
-      );
+  // Use custom hooks to manage complex logic
+  useWordSelection();
+  useAutoAnswerCheck();
+  const { mode, showSettings, showWordHint, showLettersHint } =
+    useExerciseSettings();
 
-      if (newWord) {
-        dispatch(setCurrentWord(newWord.polish));
-        dispatch(setAnswer(newWord.english));
-      }
-    }
-  }, [currentWord, allWords, dispatch]);
-  useEffect(() => {
-    if (answer === myAnswer && answer != "" && showWordHint) {
-      console.log("good");
-      dispatch(addGoodWord(myAnswer));
-      dispatch(setReset());
-    }
-  }, [answer, myAnswer, dispatch]);
   return (
     <>
       <Grid container spacing={2}>

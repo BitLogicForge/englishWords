@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import words from "../data/wordsall.json";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { setMyAnswer, setOptionsWords } from "../store/lessonSlice";
-import { checkAnswer } from "../utils/answerUtils.ts";
-import { getRandomValueFromColumn } from "../utils/listFunctions.ts";
+import { type WordPair } from "../types";
+import { checkAnswer } from "../utils/answerUtils";
+import { getRandomValueFromColumn } from "../utils/listFunctions";
 
 export default function OptionsWords() {
   const dispatch = useAppDispatch();
@@ -13,20 +14,23 @@ export default function OptionsWords() {
 
   const options = useAppSelector((state) => state.lesson.optionsWords);
   const numberOfOptionsWords = useAppSelector(
-    (state) => state.lesson.numberOfOptionsWords,
+    (state) => state.lesson.numberOfOptionsWords
   );
 
   useEffect(() => {
-    if (options.length === 0) {
+    if (options.length === 0 && answer) {
       const newOptions = getRandomValueFromColumn(
-        words,
+        words as WordPair[],
         "english",
         numberOfOptionsWords - 1,
-        [answer],
+        [answer]
       );
-      if (newOptions && answer) {
+
+      if (newOptions) {
         const values = {
-          words: Array.isArray(newOptions) ? newOptions : [newOptions],
+          words: Array.isArray(newOptions)
+            ? (newOptions as string[])
+            : [newOptions as string],
           answer: answer,
         };
         dispatch(setOptionsWords(values));
