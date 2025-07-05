@@ -65,7 +65,7 @@ const ExercisePage = () => {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid>
+        <Grid size={{ xs: 12 }}>
           <Box
             sx={{
               display: "flex",
@@ -77,7 +77,7 @@ const ExercisePage = () => {
             <CurrentWord />
           </Box>
         </Grid>
-        <Grid>
+        <Grid size={{ xs: 12 }}>
           <Paper>
             <Box
               sx={{
