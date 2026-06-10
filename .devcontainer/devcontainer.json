@@ -1,0 +1,44 @@
+{
+  "name": "englishworld",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:dev-24-bookworm",
+  "runArgs": [
+    "--name=englishworld-dev"
+  ],
+  "remoteUser": "node",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
+  "mounts": [
+    "source=reactTemplate-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
+  "postCreateCommand": "sudo chown -R node:node /workspaces/${localWorkspaceFolderBasename}/node_modules",
+  "forwardPorts": [
+    5173,
+    4173
+  ],
+  "portsAttributes": {
+    "5173": {
+      "label": "Vite dev server",
+      "onAutoForward": "notify",
+      "protocol": "http"
+    },
+    "4173": {
+      "label": "Vite preview",
+      "onAutoForward": "silent"
+    }
+  },
+  "containerEnv": {
+    "CHOKIDAR_USEPOLLING": "true"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [],
+      "settings": {
+        "eslint.validate": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ]
+      }
+    }
+  }
+}
