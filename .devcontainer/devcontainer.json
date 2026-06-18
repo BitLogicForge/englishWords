@@ -23,7 +23,7 @@
   ],
   "onCreateCommand": "",
   "postCreateCommand": "/workspaces/dev_scripts/post_create.sh",
-  "postStartCommand": "/workspaces/dev_scripts/post_start.sh && /workspaces/dev_scripts/copy_config.sh shared_node",
+  "postStartCommand": "/workspaces/dev_scripts/post_start.sh && /workspaces/dev_scripts/copy_config.sh shared_node && /workspaces/dev_scripts/post_start_shared.sh",
   "forwardPorts": [
     5173,
     4173
